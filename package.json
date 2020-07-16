@@ -1,6 +1,6 @@
 {
     "name": "@epickris/zpl",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Build, tweak and render individual labels.",
     "repository": {
         "type": "git",
