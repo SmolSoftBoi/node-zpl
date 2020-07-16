@@ -81,16 +81,13 @@ export default class Zpl {
     private async graphics(file: string & Buffer & Jimp): Promise<Graphics> {
         const image = await Jimp.read(file);
         const graphics: Graphics = {
-            data: Buffer.from(''),
+            data: '',
             totalBytes: image.bitmap.width * image.bitmap.height * 2,
             rowBytes: image.bitmap.width * 2
         };
 
         for (const { idx } of image.scanIterator(0, 0, image.bitmap.width, image.bitmap.height)) {
-            graphics.data = Buffer.concat([
-                graphics.data,
-                Buffer.from(padStart(image.bitmap.data[idx].toString(16), 2, '0'))
-            ]);
+            graphics.data += padStart(image.bitmap.data[idx].toString(16), 2, '0');
         }
 
         return graphics;
@@ -105,7 +102,7 @@ interface Graphics {
     /**
      * Data.
      */
-    data: Buffer;
+    data: string;
 
     /**
      * Total bytes.
