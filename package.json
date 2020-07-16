@@ -1,6 +1,6 @@
 {
-    "name": "zpl",
-    "version": "1.0.0",
+    "name": "@epickris/zpl",
+    "version": "0.0.1",
     "description": "Build, tweak and render individual labels.",
     "repository": {
         "type": "git",
@@ -37,4 +37,4 @@
         "ts-node": "^8.10.2",
         "typescript": "^3.9.6"
     }
-  }
+}
