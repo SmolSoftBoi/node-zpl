@@ -23,7 +23,11 @@ export default class Zpl {
      * Get ZPL.
      */
     getZpl(): string {
-        return `${this.zpl.join('\n')}`;
+        return [
+            Commands.START_COMMAND,
+            ...this.zpl,
+            Commands.END_FORMAT
+        ].join('\n');
     }
 
     /**
