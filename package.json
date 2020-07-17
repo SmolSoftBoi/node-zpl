@@ -1,13 +1,13 @@
 {
     "name": "@epickris/zpl",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Build, tweak and render individual labels.",
     "repository": {
         "type": "git",
-        "url": "git://github.com/EpicKris/zpl.git"
+        "url": "git://github.com/EpicKris/node-zpl.git"
     },
     "bugs": {
-        "url": "https://github.com/EpicKris/zpl/issues"
+        "url": "https://github.com/EpicKris/node-zpl/issues"
     },
     "engines": {
         "node": ">=10.17.0"
