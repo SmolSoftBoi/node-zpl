@@ -99,7 +99,7 @@ export function barCodeFieldDefault(w = 2, r = 3.0, h = 10): string {
  * @param h Individual character height (in dots).
  * @param w Individual character width (in dots).
  */
-export function changeAlphanumericDefaultFont(f: string | = 'A', h = 9, w = 5): string {
+export function changeAlphanumericDefaultFont(f: string | number = 'A', h = 9, w = 5): string {
     return `${CHANGE_ALPHANUMERIC_DEFAULT_FONT}${f},${h},${w}`;
 }
 
@@ -123,10 +123,10 @@ export function code128BarCode(o?: Params.Code128BarCode.Orientation, h?: number
         zpl += `,${o}`;
     }
 
-    if (h) [
+    if (h) {
         zpl += `,${h},${f ? 'Y' : 'N'},${g ? 'Y' : 'N'},${e ? 'Y' : 'N'}`;
-    ]
-    
+    }
+
     return zpl;
 }
 
