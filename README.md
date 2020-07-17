@@ -1,2 +1,96 @@
 # ZPL
 Build, tweak and render individual labels.
+
+```ts
+import { default as Zpl } from '@epickris/zpl';
+import * as ZplCommands from '@epickris/zpl/dist/commands';
+
+const zpl = new Zpl();
+
+zpl.addZpl([
+    ZplCommands.comment('Top section with logo, name and address.'),
+    ZplCommands.changeAlphanumericDefaultFont(0, 60),
+    ZplCommands.fieldOrigin(50, 50),
+    ZplCommands.graphicBox(100, 100, 100),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(75, 75),
+    ZplCommands.FIELD_REVERSE_PRINT,
+    ZplCommands.graphicBox(100, 100, 100),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(93, 93),
+    ZplCommands.graphicBox(40, 40, 40),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.changeAlphanumericDefaultFont(0, 30),
+    ZplCommands.fieldOrigin(220, 115),
+    ZplCommands.fieldData('1000 Shipping Lane'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(220.155),
+    ZplCommands.fieldData('Shelbyville TN 38102'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(220, 195),
+    ZplCommands.fieldData('United States (USA)'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(50, 250),
+    ZplCommands.graphicBox(700, 1, 3),
+    ZplCommands.FIELD_SEPARATOR,
+
+    ZplCommands.comment('Second section with recipient address and permit information.'),
+    ZplCommands.changeAlphanumericDefaultFont('A', 30),
+    ZplCommands.fieldOrigin(50, 300),
+    ZplCommands.fieldData('John Doe'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(50, 380),
+    ZplCommands.fieldData('100 Main Street'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(50, 380),
+    ZplCommands.fieldData('Springfield TN 39021'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(50, 420),
+    ZplCommands.fieldData('United States (USA)'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.changeAlphanumericDefaultFont('A', 15),
+    ZplCommands.fieldOrigin(600, 300),
+    ZplCommands.graphicBox(150, 150, 3),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(638, 340),
+    ZplCommands.fieldData('Permit'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(638, 390),
+    ZplCommands.fieldData('123456'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(50, 500),
+    ZplCommands.graphicBox(700, 1, 3),
+    ZplCommands.FIELD_SEPARATOR,
+
+    ZplCommands.comment('Third section with barcode.'),
+    ZplCommands.barCodeFieldDefault(5, 2, 270),
+    ZplCommands.fieldOrigin(100, 550),
+    ZplCommands.code128BarCode(),
+    ZplCommands.fieldData('12345678'),
+    ZplCommands.FIELD_SEPARATOR,
+
+    ZplCommands.comment('Fourth section (the two boxes on the bottom).'),
+    ZplCommands.fieldOrigin(50, 900),
+    ZplCommands.graphicBox(700, 250, 3),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(400, 900),
+    ZplCommands.graphicBox(1, 250, 3),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.changeAlphanumericDefaultFont(0, 40),
+    ZplCommands.fieldOrigin(100, 960),
+    ZplCommands.fieldData('Ctr. X34B-1'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(100, 1010),
+    ZplCommands.fieldData('REF1 F00B47'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.fieldOrigin(100, 1060),
+    ZplCommands.fieldData('REF2 BL4H8'),
+    ZplCommands.FIELD_SEPARATOR,
+    ZplCommands.changeAlphanumericDefaultFont(0, 190),
+    ZplCommands.fieldOrigin(470, 955),
+    ZplCommands.fieldData('CA'),
+    ZplCommands.FIELD_SEPARATOR
+]);
+
+console.log(zpl.getZpl());
+```
