@@ -121,17 +121,6 @@ export default class Zpl {
             bytes = '';
         }
 
-        image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
-            // x, y is the position of this pixel on the image
-            // idx is the position start position of this rgba tuple in the bitmap Buffer
-            // this is the image
-          
-            //console.log(idx, ' ');
-          
-            // rgba values run from 0 - 255
-            // e.g. this.bitmap.data[idx] = 0; // removes red from this pixel
-          });
-
         return graphics;
     }
 }
