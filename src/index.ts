@@ -16,7 +16,13 @@ export default class Zpl {
      * @param zpl ZPL.
      */
     constructor(zpl?: string) {
-        if (zpl) this.zpl.push(zpl);
+        if (zpl) {
+            if (Array.isArray(zpl)) {
+                this.zpl = zpl;
+            } else {
+                this.zpl = [zpl];
+            }
+        }
     }
 
     /**
@@ -63,7 +69,7 @@ export default class Zpl {
 
         const fieldOrigin = Commands.fieldOrigin(fieldOriginX, fieldOriginY);
         const graphicField = Commands.graphicField(
-            CommandParams.GraphicFieldCompressionTypee.ASCII_HEX,
+            CommandParams.GraphicField.CompressionType.ASCII_HEX,
             graphics.totalBytes,
             graphics.totalBytes,
             graphics.rowBytes,
