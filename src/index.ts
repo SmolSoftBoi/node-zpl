@@ -80,15 +80,57 @@ export default class Zpl {
      */
     private async graphics(file: string & Buffer & Jimp): Promise<Graphics> {
         const image = await Jimp.read(file);
+        
+        const cropX = Math.floor((image.bitmap.width % 8) / 2);
+        const cropWidth = Math.floor(image.bitmap.width / 8) * 8;
+        const cropHeight = image.bitmap.height;
+        image.crop(cropX, 0, cropWidth, cropHeight).grayscale().contrast(1).invert().write('lena-small-bw.jpg');
+
         const graphics: Graphics = {
-            data: '',
-            totalBytes: image.bitmap.width * image.bitmap.height * 2,
-            rowBytes: image.bitmap.width * 2
+            data: '\n',
+            totalBytes: Math.floor(image.bitmap.width / 8) * image.bitmap.height,
+            rowBytes: Math.floor(image.bitmap.width / 8)
         };
 
-        for (const { idx } of image.scanIterator(0, 0, image.bitmap.width, image.bitmap.height)) {
-            graphics.data += padStart(image.bitmap.data[idx].toString(16), 2, '0');
+        let comma = false;
+        for (let y = 0; y < image.bitmap.height; y++) {
+            let byte = '';
+            let bytes = '';
+            for (let x = 0; x < image.bitmap.width; x++) {
+                const idx = (image.bitmap.width * y + x) << 2;
+                const k = (image.bitmap.data[idx] + image.bitmap.data[idx + 1] + image.bitmap.data[idx + 2]) / 3;
+
+                byte += k < 128 ? '0' : '1';
+
+                if (byte.length === 8) {
+                    bytes += padStart(parseInt(byte, 2).toString(16), 2, '0');
+                    byte = '';
+                }
+            }
+
+            if (parseInt(bytes, 16) === 0) {
+                graphics.data += ',';
+                comma = true;
+            } else {
+                if (comma) graphics.data += '\n';
+                graphics.data += `${bytes.toUpperCase()}\n`;
+                comma = false;
+            }
+
+            byte = '';
+            bytes = '';
         }
+
+        image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
+            // x, y is the position of this pixel on the image
+            // idx is the position start position of this rgba tuple in the bitmap Buffer
+            // this is the image
+          
+            //console.log(idx, ' ');
+          
+            // rgba values run from 0 - 255
+            // e.g. this.bitmap.data[idx] = 0; // removes red from this pixel
+          });
 
         return graphics;
     }
