@@ -90,7 +90,7 @@ export default class Zpl {
         const cropX = Math.floor((image.bitmap.width % 8) / 2);
         const cropWidth = Math.floor(image.bitmap.width / 8) * 8;
         const cropHeight = image.bitmap.height;
-        image.crop(cropX, 0, cropWidth, cropHeight).grayscale().contrast(1).invert().write('lena-small-bw.jpg');
+        image.crop(cropX, 0, cropWidth, cropHeight).grayscale().contrast(1).invert();
 
         const graphics: Graphics = {
             data: '\n',
