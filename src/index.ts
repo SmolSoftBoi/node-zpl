@@ -81,6 +81,13 @@ export default class Zpl {
     }
 
     /**
+     * Add label.
+     */
+    addLabel(): void {
+        this.zpl.push(Commands.END_FORMAT, Commands.START_COMMAND);
+    }
+
+    /**
      * Graphics.
      * @param file File.
      */
