@@ -1,6 +1,6 @@
 {
     "name": "@epickris/zpl",
-    "version": "0.0.6",
+    "version": "0.1.0",
     "description": "Build, tweak and render individual labels.",
     "repository": {
         "type": "git",
@@ -14,10 +14,12 @@
     },
     "main": "dist/index.js",
     "scripts": {
-        "lint": "eslint src/**.ts",
+        "lint": "eslint src/**/*.{js,ts,json}",
         "watch": "npm run build && npm link && nodemon",
-        "build": "rimraf ./dist && tsc",
-        "prepublishOnly": "npm run lint && npm run build"
+        "build": "npm run clean && tsc",
+        "clean": "rimraf ./dist",
+        "prepublishOnly": "npm run lint && npm run build",
+        "postpublish": "npm run clean"
     },
     "keywords": [
         "zpl"
