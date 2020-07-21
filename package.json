@@ -1,6 +1,6 @@
 {
     "name": "@epickris/zpl",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Build, tweak and render individual labels.",
     "repository": {
         "type": "git",
@@ -13,6 +13,9 @@
         "node": ">=10.17.0"
     },
     "main": "dist/index.js",
+    "bin": {
+        "zpl": "bin/zpl"
+    },
     "scripts": {
         "lint": "eslint src/**/*.{js,ts,json}",
         "watch": "npm run build && npm link && nodemon",
@@ -25,6 +28,7 @@
         "zpl"
     ],
     "dependencies": {
+        "commander": "^6.0.0",
         "jimp": "^0.14.0",
         "lodash": "^4.17.19"
     },

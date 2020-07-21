@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+//
+// This executable sets up the environment and runs the ZPL CLI.
+//
+
+'use strict';
+
+process.title = 'zpl';
+
+// Find the ZPL lib
+const path = require('path');
+const fs = require('fs');
+const distPath = path.join(path.dirname(fs.realpathSync(__filename)), "../dist");
+
+// Run ZPL
+require(distPath + '/cli')();
