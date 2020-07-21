@@ -20,5 +20,7 @@ export = async function cli(): Promise<string> {
         await zpl.addImage(imagePath);
     }
 
-    return zpl.getZpl();
+    const out = zpl.getZpl();
+    console.log(out);
+    return out;
 }
