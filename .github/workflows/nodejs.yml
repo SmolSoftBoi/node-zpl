@@ -18,7 +18,7 @@ jobs:
         id: cache
         with:
           path: node_modules
-          key: ${{ runner.OS }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.OS }}-node-modules-${{ hashFiles('**/**-lock.json') }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
