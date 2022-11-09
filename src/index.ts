@@ -2,7 +2,7 @@ import * as Commands from './commands';
 import * as CommandParams from './commandParams';
 
 import Jimp from 'jimp';
-import { padStart } from 'lodash';
+import {padStart} from 'lodash';
 
 /**
  * ZPL.
@@ -75,9 +75,7 @@ export default class Zpl {
             graphics.rowBytes,
             graphics.data.toString()
         );
-        const fieldSeparator = Commands.FIELD_SEPARATOR;
-
-        this.zpl.push(fieldOrigin, graphicField, fieldSeparator);
+        this.zpl.push(fieldOrigin, graphicField, Commands.FIELD_SEPARATOR);
     }
 
     /**
