@@ -216,6 +216,11 @@ export function graphicField(a: Params.GraphicField.CompressionType, b: number, 
  * It controls the number of labels to print,
  * the number of labels printed before printer pauses,
  * and the number of replications of each serial number.
+ * @param q Total quantity of labels to print.
+ * @param p Pause and cut value (labels between pauses).
+ * @param r Replicates of each serial number.
+ * @param o Override pause count.
+ * @param e Cut on error label (RFID void is an error label).
  */
 export function printQuality(
     q = 1,
