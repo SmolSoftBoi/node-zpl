@@ -83,6 +83,12 @@ export const GRAPHIC_FIELD = '^GF';
 export const PRINT_QUALITY = '^PQ';
 
 /**
+ * The ^SF command allows you to serialize a standard ^FD string.
+ * The maximum size of the mask and increment string is 3K combined.
+ */
+export const SERIALIZATION_FIELD = '^SF';
+
+/**
  * The ^XA command is used at the beginning of ZPL code.
  * It is the opening bracket and indicates the start of a new label format.
  */
@@ -257,4 +263,21 @@ export function printQuality(
     e: Params.PrintQuantity.CutOnErrorLabel = Params.PrintQuantity.CutOnErrorLabel.YES
 ): string {
     return `${PRINT_QUALITY}${q},${p},${r},${o},${e}`
+}
+
+/**
+ * The ^SF command allows you to serialize a standard ^FD string.
+ * The maximum size of the mask and increment string is 3K combined.
+ * @param a The mask string sets the serialization scheme.
+ *          The length of the string mask defines the number of characters in the current ^FD string to be serialized.
+ *          The mask is aligned to the characters in the ^FD string starting with the right-most in the backing store position.
+ * @param b The increment string is the value to be added to the field on each label.
+ *          The default value is equivalent to a decimal value of one.
+ *          The string is composed of any characters defined in the serial string.
+ *          Invalid characters are assumed to be equal to a value of zero in that characters position.
+ *          The increment value for alphabetic strings start with `A` or `a` as the zero placeholder.
+ *          This means to increment an alphabetic character by one, a value of `B` or `b` must be in the increment string.
+ */
+export function serializationField(a: string, b: string): string {
+    return `${SERIALIZATION_FIELD}${a},${b}`
 }
