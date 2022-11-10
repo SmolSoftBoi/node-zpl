@@ -24,6 +24,13 @@ export const BAR_CODE_FIELD_DEFAULT = '^BY';
 export const CHANGE_ALPHANUMERIC_DEFAULT_FONT = '^CF';
 
 /**
+ * The ^FB command allows you to print text into a defined block type format.
+ * This command formats an ^FD or ^SN string into a block of text using the origin, font, and rotation specified for the text string.
+ * The ^FB command also contains an automatic word-wrap function.
+ */
+export const FIELD_BLOCK = '^FB';
+
+/**
  * The ^FD command defines the data string for a field.
  * The field data can be any printable character except those used as command prefixes (^ and ~).
  */
@@ -146,6 +153,26 @@ export function code128BarCode(o?: Params.Code128BarCode.Orientation, h?: number
  */
 export function comment(c: string): string {
     return `${COMMENT} ${c}`;
+}
+
+/**
+ * The ^FB command allows you to print text into a defined block type format.
+ * This command formats an ^FD or ^SN string into a block of text using the origin, font, and rotation specified for the text string.
+ * The ^FB command also contains an automatic word-wrap function.
+ * @param a Width of text block line (in dots).
+ * @param b Maximum number of lines in text block.
+ * @param c Add or delete space between lines (in dots).
+ * @param d Text justification.
+ * @param e Hanging indent (in dots) of the second and remaining lines.
+ */
+export function fieldBlock(
+    a = 0,
+    b = 1,
+    c = 0,
+    d: Params.FieldBlock.TextJustification = Params.FieldBlock.TextJustification.LEFT,
+    e = 0
+): string {
+    return `${FIELD_BLOCK}${a},${b},${c},${d},${e}`
 }
 
 /**
