@@ -68,6 +68,14 @@ export const GRAPHIC_BOX = '^GB';
 export const GRAPHIC_FIELD = '^GF';
 
 /**
+ * The ^PQ command gives control over several printing operations.
+ * It controls the number of labels to print,
+ * the number of labels printed before printer pauses,
+ * and the number of replications of each serial number.
+ */
+export const PRINT_QUALITY = '^PQ';
+
+/**
  * The ^XA command is used at the beginning of ZPL code.
  * It is the opening bracket and indicates the start of a new label format.
  */
@@ -201,4 +209,20 @@ export function graphicBox(
  */
 export function graphicField(a: Params.GraphicField.CompressionType, b: number, c: number, d: number, data: string): string {
     return `${GRAPHIC_FIELD}${a},${b},${c},${d},${data}`;
+}
+
+/**
+ * The ^PQ command gives control over several printing operations.
+ * It controls the number of labels to print,
+ * the number of labels printed before printer pauses,
+ * and the number of replications of each serial number.
+ */
+export function printQuality(
+    q = 1,
+    p = 0,
+    r = 0,
+    o: Params.PrintQuantity.OverridePauseCount = Params.PrintQuantity.OverridePauseCount.NO,
+    e: Params.PrintQuantity.CutOnErrorLabel = Params.PrintQuantity.CutOnErrorLabel.YES
+): string {
+    return `${PRINT_QUALITY}${q},${p},${r},${o},${e}`
 }
