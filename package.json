@@ -10,7 +10,7 @@
         "url": "https://github.com/EpicKris/node-zpl/issues"
     },
     "engines": {
-        "node": ">=10.17.0"
+        "node": ">=12"
     },
     "main": "dist/index.js",
     "bin": {
