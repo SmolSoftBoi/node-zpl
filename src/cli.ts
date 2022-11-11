@@ -1,12 +1,14 @@
 import Zpl from '.';
 import getVersion from './version';
 
-import { default as commander } from 'commander';
+import { Command } from 'commander';
 
 /**
  * Command line interface.
  */
 export = async function cli(): Promise<string> {
+    const commander = new Command();
+
     let imagePath: string | null = null;
 
     commander

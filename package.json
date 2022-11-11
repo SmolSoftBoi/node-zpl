@@ -28,7 +28,7 @@
         "zpl"
     ],
     "dependencies": {
-        "commander": "^6.0.0",
+        "commander": "^9.4.1",
         "jimp": "^0.16.2",
         "lodash": "^4.17.19"
     },
