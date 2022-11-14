@@ -80,7 +80,7 @@ export const GRAPHIC_FIELD = '^GF';
  * the number of labels printed before printer pauses,
  * and the number of replications of each serial number.
  */
-export const PRINT_QUALITY = '^PQ';
+export const PRINT_QUANTITY = '^PQ';
 
 /**
  * The ^SF command allows you to serialize a standard ^FD string.
@@ -120,8 +120,12 @@ export function barCodeFieldDefault(w = 2, r = 3.0, h = 10): string {
  * @param h Individual character height (in dots).
  * @param w Individual character width (in dots).
  */
-export function changeAlphanumericDefaultFont(f: string | number = 'A', h = 9, w = 5): string {
-    return `${CHANGE_ALPHANUMERIC_DEFAULT_FONT}${f},${h},${w}`;
+export function changeAlphanumericDefaultFont(f: string | number = 'A', h = 9, w? : number): string {
+    let zpl = `${CHANGE_ALPHANUMERIC_DEFAULT_FONT}${f},${h}`;
+    if (w) {
+        zpl += `,${w}`
+    }
+    return zpl
 }
 
 /**
@@ -255,14 +259,14 @@ export function graphicField(a: Params.GraphicField.CompressionType, b: number, 
  * @param o Override pause count.
  * @param e Cut on error label (RFID void is an error label).
  */
-export function printQuality(
+export function printQuantity(
     q = 1,
     p = 0,
     r = 0,
     o: Params.PrintQuantity.OverridePauseCount = Params.PrintQuantity.OverridePauseCount.NO,
     e: Params.PrintQuantity.CutOnErrorLabel = Params.PrintQuantity.CutOnErrorLabel.YES
 ): string {
-    return `${PRINT_QUALITY}${q},${p},${r},${o},${e}`
+    return `${PRINT_QUANTITY}${q},${p},${r},${o},${e}`
 }
 
 /**
