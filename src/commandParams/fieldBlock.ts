@@ -1,8 +1,25 @@
+/**
+ * Text justification.
+ */
+export const enum TextJustification {
 
-export const enum justification {
-    LEFT = 0,
-    CENTER = 1,
-    RIGHT = 2,
-    JUSTIFIED = 3,
+    /**
+     * Left.
+     */
+    LEFT = 'L',
 
+    /**
+     * Center.
+     */
+    CENTER = 'C',
+
+    /**
+     * Right.
+     */
+    RIGHT = 'R',
+
+    /**
+     * Justified.
+     */
+    JUSTIFIED = 'J'
 }
