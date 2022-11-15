@@ -75,9 +75,7 @@ export default class Zpl {
             graphics.rowBytes,
             graphics.data.toString()
         );
-        const fieldSeparator = Commands.FIELD_SEPARATOR;
-
-        this.zpl.push(fieldOrigin, graphicField, fieldSeparator);
+        this.zpl.push(fieldOrigin, graphicField, Commands.FIELD_SEPARATOR);
     }
 
     /**
