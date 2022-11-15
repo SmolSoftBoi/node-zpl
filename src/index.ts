@@ -2,7 +2,7 @@ import * as Commands from './commands';
 import * as CommandParams from './commandParams';
 
 import Jimp from 'jimp';
-import {padStart} from 'lodash';
+import { padStart } from 'lodash';
 
 /**
  * ZPL.
