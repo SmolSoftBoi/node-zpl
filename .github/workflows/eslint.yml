@@ -1,0 +1,33 @@
+name: ESLint
+
+on:
+  push:
+    branches: master
+  pull_request:
+  workflow_call:
+    inputs:
+      node_version:
+        description: 'Defines the node version setup to run the linter'
+        default: 16
+        required: false
+        type: number
+
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: 'npm'
+
+      - name: install
+        run: yarn install
+
+      - name: eslint
+        run: yarn run lint
+        env:
+          CI: true
