@@ -17,7 +17,7 @@
         "zpl": "bin/zpl"
     },
     "scripts": {
-        "lint": "eslint src/**/*.{js,ts,json}",
+        "lint": "eslint 'src/**/*.{js,ts,json}'",
         "watch": "npm run build && npm link && nodemon",
         "build": "npm run clean && tsc",
         "clean": "rimraf ./dist",
@@ -35,8 +35,8 @@
     "devDependencies": {
         "@types/lodash": "^4.14.157",
         "@types/node": "^18.11.9",
-        "@typescript-eslint/eslint-plugin": "^4.0.0",
-        "@typescript-eslint/parser": "^3.6.1",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "@typescript-eslint/parser": "^5.0.0",
         "eslint": "^7.4.0",
         "nodemon": "^2.0.4",
         "rimraf": "^3.0.2",
