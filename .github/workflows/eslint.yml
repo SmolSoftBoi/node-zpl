@@ -28,6 +28,6 @@ jobs:
         run: yarn install
 
       - name: eslint
-        run: yarn run lint --if-present
+        run: yarn run lint
         env:
           CI: true
