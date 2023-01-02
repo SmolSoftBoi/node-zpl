@@ -1,6 +1,14 @@
 import * as Params from './commandParams';
 
 /**
+ * The ^A command specifies the font to use in a text field.
+ * ^A designates the font for the current ^FD statement or field.
+ * The font specified by ^A is used only once for that ^FD entry.
+ * If a value for ^A is not specified again, the default ^CF font is used for the next ^FD entry.
+ */
+export const FONT = '^A';
+
+/**
  * The ^BC command creates the Code 128 bar code, a high-density, variable length, continuous, alphanumeric symbology.
  * It was designed for complexly encoded product identification.
  * Code 128 has three subsets of characters.
@@ -206,6 +214,31 @@ export function fieldOrigin(x = 0, y = 0, z?: Params.FieldOrigin.Justification):
     
     if (z) {
         zpl += `,${z}`;
+    }
+
+    return zpl;
+}
+
+/**
+ * The ^A command specifies the font to use in a text field.
+ * ^A designates the font for the current ^FD statement or field.
+ * The font specified by ^A is used only once for that ^FD entry.
+ * If a value for ^A is not specified again, the default ^CF font is used for the next ^FD entry.
+ * @param f Font name.
+ *          Any font in the printer (downloaded, EPROM, stored fonts, fonts A through Z and 0 to 9).
+ * @param o Field orientation.
+ * @param h Character height (in dots).
+ * @param w Width (in dots).
+ */
+export function font(f?, o?, h?, w?): string {
+    let zpl = `${FONT}${f}${o}`;
+
+    if (h) {
+        zpl += `,${h}`;
+    }
+
+    if (w) {
+        zpl += `,${w}`;
     }
 
     return zpl;
