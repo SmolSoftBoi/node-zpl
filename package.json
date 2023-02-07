@@ -29,7 +29,7 @@
     ],
     "dependencies": {
         "commander": "^10.0.0",
-        "jimp": "^0.21.3",
+        "jimp": "^0.22.3",
         "lodash": "^4.17.19"
     },
     "devDependencies": {
