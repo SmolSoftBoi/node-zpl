@@ -10,7 +10,7 @@
         "url": "https://github.com/EpicKris/node-zpl/issues"
     },
     "engines": {
-        "node": ">=14"
+        "node": ">=16"
     },
     "main": "dist/index.js",
     "bin": {
@@ -34,7 +34,7 @@
     },
     "devDependencies": {
         "@types/lodash": "^4.14.157",
-        "@types/node": "^20.1.0",
+        "@types/node": "^20.3.2",
         "@typescript-eslint/eslint-plugin": "^5.0.0",
         "@typescript-eslint/parser": "^5.0.0",
         "eslint": "^8.41.0",
