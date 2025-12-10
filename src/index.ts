@@ -1,8 +1,12 @@
 import * as Commands from './commands';
 import * as CommandParams from './commandParams';
 
-import Jimp from 'jimp';
+import { Jimp } from 'jimp';
 import { padStart } from 'lodash';
+
+type JimpImage = Awaited<ReturnType<typeof Jimp.read>>;
+type ImageInput = string | Buffer | JimpImage;
+const isJimpImage = (input: ImageInput): input is JimpImage => input instanceof Jimp;
 
 /**
  * ZPL.
@@ -64,7 +68,7 @@ export default class Zpl {
      * Add image.
      * @param image Image.
      */
-    async addImage(image: string & Buffer & Jimp, fieldOriginX = 0, fieldOriginY = 0): Promise<void> {
+    async addImage(image: ImageInput, fieldOriginX = 0, fieldOriginY = 0): Promise<void> {
         const graphics = await this.graphics(image);
 
         const fieldOrigin = Commands.fieldOrigin(fieldOriginX, fieldOriginY);
@@ -89,13 +93,22 @@ export default class Zpl {
      * Graphics.
      * @param file File.
      */
-    private async graphics(file: string & Buffer & Jimp): Promise<Graphics> {
-        const image = await Jimp.read(file);
+    private async graphics(file: ImageInput): Promise<Graphics> {
+        let image: JimpImage;
+        if (isJimpImage(file)) {
+            image = file;
+        } else {
+            image = await Jimp.read(file);
+        }
         
         const cropX = Math.floor((image.bitmap.width % 8) / 2);
         const cropWidth = Math.floor(image.bitmap.width / 8) * 8;
         const cropHeight = image.bitmap.height;
-        image.crop(cropX, 0, cropWidth, cropHeight).grayscale().contrast(1).invert();
+        image
+            .crop({ x: cropX, y: 0, w: cropWidth, h: cropHeight })
+            .greyscale()
+            .contrast(1)
+            .invert();
 
         const graphics: Graphics = {
             data: '\n',
