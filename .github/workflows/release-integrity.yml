@@ -1,0 +1,35 @@
+name: Release-Integrity
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - CHANGELOG.md
+      - package.json
+      - README.md
+      - docs/RELEASING.md
+      - scripts/release-check.mjs
+  push:
+    branches: [master]
+    paths:
+      - CHANGELOG.md
+      - package.json
+      - README.md
+      - docs/RELEASING.md
+      - scripts/release-check.mjs
+  release:
+    types: [published, prereleased]
+
+jobs:
+  release-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20.x
+      - name: Install dependencies
+        run: yarn install
+      - name: Validate release metadata
+        run: yarn release:check

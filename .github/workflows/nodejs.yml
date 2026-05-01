@@ -28,6 +28,8 @@ jobs:
           yarn run build
         env:
           CI: true
+      - name: release metadata check
+        run: yarn release:check
 
   publish-npm:
     # publish only if we are on our own repo
@@ -41,9 +43,10 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: 12 # use the minimum required version
+          node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: yarn install
+      - run: yarn release:check
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
