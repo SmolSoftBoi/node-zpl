@@ -4,25 +4,55 @@
     "description": "Build, tweak and render individual labels.",
     "repository": {
         "type": "git",
-        "url": "git://github.com/EpicKris/node-zpl.git"
+        "url": "git://github.com/SmolSoftBoi/node-zpl.git"
     },
     "bugs": {
-        "url": "https://github.com/EpicKris/node-zpl/issues"
+        "url": "https://github.com/SmolSoftBoi/node-zpl/issues"
     },
     "engines": {
         "node": ">=20"
     },
-    "main": "dist/index.js",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.js",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./commands": {
+            "types": "./dist/commands.d.ts",
+            "require": "./dist/commands.js",
+            "import": "./dist/commands.js",
+            "default": "./dist/commands.js"
+        },
+        "./dist/commands": {
+            "types": "./dist/commands.d.ts",
+            "require": "./dist/commands.js",
+            "import": "./dist/commands.js",
+            "default": "./dist/commands.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "bin",
+        "dist",
+        "README.md",
+        "CHANGELOG.md"
+    ],
     "bin": {
         "zpl": "bin/zpl"
     },
     "scripts": {
         "lint": "eslint 'src/**/*.{js,ts,json}'",
-        "watch": "npm run build && npm link && nodemon",
-        "build": "npm run clean && tsc",
+        "watch": "yarn build && npm link && nodemon",
+        "build": "yarn clean && tsc",
         "clean": "rimraf ./dist",
-        "prepublishOnly": "npm run lint && npm run build",
-        "postpublish": "npm run clean"
+        "release:check": "node ./scripts/release-check.mjs",
+        "release:prepare": "yarn lint && yarn build && yarn release:check",
+        "prepublishOnly": "yarn release:prepare",
+        "postpublish": "yarn clean"
     },
     "keywords": [
         "zpl"
